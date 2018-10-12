@@ -1,4 +1,4 @@
-# Destructing-In-ES6
+# destructuring -In-ES6
 
 ## 理解ES6中的解构
 
@@ -210,4 +210,36 @@ myFunction();
 // instead of
 import * as x from 'myModule';
 myModule.myFunction();
+```
+
+## 小心
+
+> 如果解构赋值的值不匹配，返回值为undefined
+
+```javascript
+let point = {
+  x: 1
+};
+let { x: a, y: b } = point;
+console.log(a); // 1
+console.log(b); // undefined
+```
+
+> 如果在解构时省略var，let或const将会抛出一个错误，因为代码块不能解构赋值
+
+```javascript
+let point = {
+  x: 1
+};
+{ x: a } = point; // throws error
+```
+
+> 需要将代码块用括号包起来解决这个问题,当然不推荐这种写法
+
+```javascript
+let point = {
+  x: 1
+};
+({ x: a } = point);
+console.log(a); // 1
 ```
